@@ -430,13 +430,9 @@ function rook(img, location) {
 // Decides if queen can go to a selected box
 function queen(img, location) {
     let newID = location.id;
-    if ((parentID[0] == newID[0]) || (parentID[1] == newID[1])) {
-        if (elementInBet(parentID, newID)) {
-            return false;
-        } else {
-            return true;
-        }
-    } else if (parent.classList.contains('white') && location.classList.contains('white')) {
+    let prevnum = parseInt(parentID[1]);
+    let nextnum = parseInt(newID[1]);
+    if (parent.classList.contains('white') && location.classList.contains('white')) {
         if (parentID[0] == 'a') {
             if (((newID[0] == 'b') && ((nextnum = prevnum + 1) || (nextnum = prevnum - 1))) || ((newID[0] == 'c') && ((nextnum = prevnum + 2) || (nextnum = prevnum - 2))) || ((newID[0] == 'd') && ((nextnum = prevnum + 3) || (nextnum = prevnum - 3))) || ((newID[0] == 'e') && ((nextnum = prevnum + 4) || (nextnum = prevnum - 4))) || ((newID[0] == 'f') && ((nextnum = prevnum + 5) || (nextnum = prevnum - 5))) || ((newID[0] == 'g') && ((nextnum = prevnum + 6) || (nextnum = prevnum - 6))) || ((newID[0] == 'h') && ((nextnum = prevnum + 7) || (nextnum = prevnum - 7)))) {
                 if (elementInMid(parentID, newID)) {
@@ -599,6 +595,12 @@ function queen(img, location) {
             } else {
                 return false;
             }
+        }
+    } else if ((parentID[0] == newID[0]) || (parentID[1] == newID[1])) {
+        if (elementInBet(parentID, newID)) {
+            return false;
+        } else {
+            return true;
         }
     } else {
         return false;
