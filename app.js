@@ -5,6 +5,8 @@ let img = '';
 let move_count = 0;
 let parentID = '';
 let parent = '';
+
+// Boxes where a king can jump to
 const nearby = {
     'a': 'abb',
     'b': 'abc',
@@ -15,6 +17,8 @@ const nearby = {
     'g': 'fgh',
     'h': 'ggh'
 };
+
+// Boxes where a pawn can capture
 const pNearby = {
     'a': 'bb',
     'b': 'ac',
@@ -25,6 +29,8 @@ const pNearby = {
     'g': 'fh',
     'h': 'gg'
 };
+
+// Boxes where knight can jump
 const kNearby = {
     'a': 'bcbc',
     'b': 'adcd',
@@ -35,6 +41,8 @@ const kNearby = {
     'g': 'fehe',
     'h': 'gfgf'
 };
+
+// Boxes where a bishop can jump
 const bNearby = {
     'a': 'bcdefgh',
     'b': 'acdefgh',
@@ -45,6 +53,8 @@ const bNearby = {
     'g': 'abcdefh',
     'h': 'abcdefg'
 };
+
+// Chessboard notations respective to the board
 const board = [
     ['a8', 'b8', 'c8', 'd8', 'e8', 'f8', 'g8', 'h8'],
     ['a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7'],
@@ -128,7 +138,7 @@ function moviePiece(e) {
     // if no piece is selected
     else if (e.target.classList.contains('box') && img == '') {
         img = '';
-        console.log(e.target.lastElementChild);
+        // console.log(e.target.lastElementChild);
     }
     // where the piece is to be moved
     else if (e.target.classList.contains('box')) {
@@ -185,7 +195,7 @@ function moviePiece(e) {
     e.preventDefault();
 }
 
-// Good to go
+// Decides if pawn can go to a selected box
 function pawn(img, location) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
@@ -227,6 +237,7 @@ function pawn(img, location) {
     }
 }
 
+// Decides if bishop can go to a selected box
 function bishop(img, location) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
@@ -400,6 +411,7 @@ function bishop(img, location) {
     }
 }
 
+// Decides if rook can go to a selected box
 function rook(img, location) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
@@ -415,6 +427,7 @@ function rook(img, location) {
     }
 }
 
+// Decides if queen can go to a selected box
 function queen(img, location) {
     let newID = location.id;
     if ((parentID[0] == newID[0]) || (parentID[1] == newID[1])) {
@@ -592,7 +605,7 @@ function queen(img, location) {
     }
 }
 
-// goog to go
+// Decides if king can go to a selected box
 function king(img, location) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
@@ -604,7 +617,7 @@ function king(img, location) {
     }
 }
 
-// good to go
+// Decides if knight can go to a selected box
 function knight(img, location) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
@@ -618,9 +631,7 @@ function knight(img, location) {
     }
 }
 
-// Remaining
-// rook, bishop, queen and pawn cannot jump over pieces
-
+// Rook ans Queen won't move if a piece in blocks it
 function elementInBet(prev, next) {
     let chars = 'abcdefgh';
     let sn = parseInt(prev[1]);
@@ -683,6 +694,7 @@ function elementInBet(prev, next) {
     }
 }
 
+// Bishop and queen won't move if a piece in blocks it
 function elementInMid(prev, next) {
     let chars = 'abcdefgh';
     let sn = parseInt(prev[1]);
