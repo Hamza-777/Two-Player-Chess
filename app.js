@@ -1,10 +1,31 @@
 const chess = document.querySelector('.chessboard');
-chess.addEventListener('click', moviePiece);
+chess.addEventListener('click', movePiece);
+
+const a1 = document.getElementById('a1');
+const b1 = document.getElementById('b1');
+const c1 = document.getElementById('c1');
+const d1 = document.getElementById('d1');
+const f1 = document.getElementById('f1');
+const g1 = document.getElementById('g1');
+const h1 = document.getElementById('h1');
+const a8 = document.getElementById('a8');
+const b8 = document.getElementById('b8');
+const c8 = document.getElementById('c8');
+const d8 = document.getElementById('d8');
+const f8 = document.getElementById('f8');
+const g8 = document.getElementById('g8');
+const h8 = document.getElementById('h8');
 
 let img = '';
 let move_count = 0;
 let parentID = '';
 let parent = '';
+let wking_move_count = 0;
+let bking_move_count = 0;
+let qsidewrook_move_count = 0;
+let ksidewrook_move_count = 0;
+let qsidebrook_move_count = 0;
+let ksidebrook_move_count = 0;
 
 // Boxes where a king can jump to
 const nearby = {
@@ -66,7 +87,7 @@ const board = [
     ['a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1']
 ];
 
-function moviePiece(e) {
+function movePiece(e) {
     // Exchange pieces
     if ((e.target.classList.contains('img') && img != '')) {
         if ((e.target.classList.contains('bp') && img.classList.contains('wp')) || (e.target.classList.contains('wp') && img.classList.contains('bp'))) {
@@ -81,6 +102,15 @@ function moviePiece(e) {
                 if (rook(img, e.target.parentElement)) {
                     e.target.src = img.src;
                     e.target.classList = img.classList;
+                    if (img.classList.contains('wp') && img.parentElement.id == 'a1') {
+                        qsidewrook_move_count = 1;
+                    } else if (img.classList.contains('wp') && img.parentElement.id == 'h1') {
+                        ksidewrook_move_count = 1;
+                    } else if (img.classList.contains('bp') && img.parentElement.id == 'a8') {
+                        qsidebrook_move_count = 1;
+                    } else if (img.classList.contains('bp') && img.parentElement.id == 'h8') {
+                        ksidebrook_move_count = 1;
+                    }
                     img = '';
                     move_count += 1;
                 }
@@ -95,6 +125,11 @@ function moviePiece(e) {
                 if (king(img, e.target.parentElement)) {
                     e.target.src = img.src;
                     e.target.classList = img.classList;
+                    if (img.classList.contains('wp')) {
+                        wking_move_count += 1;
+                    } else {
+                        bking_move_count += 1;
+                    }
                     img = '';
                     move_count += 1;
                 }
@@ -112,11 +147,6 @@ function moviePiece(e) {
                     img = '';
                     move_count += 1;
                 }
-            } else {
-                e.target.src = img.src;
-                e.target.classList = img.classList;
-                img = '';
-                move_count += 1;
             }
         }
     }
@@ -138,7 +168,7 @@ function moviePiece(e) {
     // if no piece is selected
     else if (e.target.classList.contains('box') && img == '') {
         img = '';
-        // console.log(e.target.lastElementChild);
+        console.log(e.target.lastElementChild);
     }
     // where the piece is to be moved
     else if (e.target.classList.contains('box')) {
@@ -152,6 +182,15 @@ function moviePiece(e) {
             } else if (img.classList.contains('rook')) {
                 if (rook(img, e.target)) {
                     e.target.appendChild(img);
+                    if (img.classList.contains('wp') && img.parentElement.id == 'a1') {
+                        qsidewrook_move_count = 1;
+                    } else if (img.classList.contains('wp') && img.parentElement.id == 'h1') {
+                        ksidewrook_move_count = 1;
+                    } else if (img.classList.contains('bp') && img.parentElement.id == 'a8') {
+                        qsidebrook_move_count = 1;
+                    } else if (img.classList.contains('bp') && img.parentElement.id == 'h8') {
+                        ksidebrook_move_count = 1;
+                    }
                     img = '';
                     move_count += 1;
                 }
@@ -164,6 +203,43 @@ function moviePiece(e) {
             } else if (img.classList.contains('king')) {
                 if (king(img, e.target)) {
                     e.target.appendChild(img);
+                    if (img.classList.contains('wp')) {
+                        wking_move_count += 1;
+                    } else {
+                        bking_move_count += 1;
+                    }
+                    img = '';
+                    move_count += 1;
+                } else if (img.classList.contains('wp') && (e.target.id == 'c1') && (d1.lastElementChild == null) && (c1.lastElementChild == null) && (b1.lastElementChild == null) && (wking_move_count == 0) && qsidewrook_move_count == 0) {
+                    e.target.appendChild(img);
+                    wking_move_count += 1;
+                    qsidewrook_move_count = 1;
+                    d1.appendChild(a1.lastElementChild);
+                    a1.innerHTML = '';
+                    img = '';
+                    move_count += 1;
+                } else if (img.classList.contains('wp') && (e.target.id == 'g1') && (f1.lastElementChild == null) && (g1.lastElementChild == null) && (wking_move_count == 0) && ksidewrook_move_count == 0) {
+                    e.target.appendChild(img);
+                    wking_move_count += 1;
+                    ksidewrook_move_count = 1;
+                    f1.appendChild(h1.lastElementChild);
+                    h1.innerHTML = '';
+                    img = '';
+                    move_count += 1;
+                } else if (img.classList.contains('bp') && (e.target.id == 'g8') && (f8.lastElementChild == null) && (g8.lastElementChild == null) && (bking_move_count == 0) && ksidebrook_move_count == 0) {
+                    e.target.appendChild(img);
+                    bking_move_count += 1;
+                    ksidebrook_move_count = 1;
+                    f8.appendChild(h8.lastElementChild);
+                    h8.innerHTML = '';
+                    img = '';
+                    move_count += 1;
+                } else if (img.classList.contains('bp') && (e.target.id == 'c8') && (d8.lastElementChild == null) && (c8.lastElementChild == null) && (b8.lastElementChild == null) && (bking_move_count == 0) && qsidebrook_move_count == 0) {
+                    e.target.appendChild(img);
+                    bking_move_count += 1;
+                    qsidebrook_move_count = 1;
+                    d8.appendChild(a8.lastElementChild);
+                    a8.innerHTML = '';
                     img = '';
                     move_count += 1;
                 }
@@ -179,10 +255,6 @@ function moviePiece(e) {
                     img = '';
                     move_count += 1;
                 }
-            } else {
-                e.target.appendChild(img);
-                img = '';
-                move_count += 1;
             }
         } else {
             e.target.appendChild(img);
@@ -432,7 +504,13 @@ function queen(img, location) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
     let nextnum = parseInt(newID[1]);
-    if (parent.classList.contains('white') && location.classList.contains('white')) {
+    if ((parentID[0] == newID[0]) || (parentID[1] == newID[1])) {
+        if (elementInBet(parentID, newID)) {
+            return false;
+        } else {
+            return true;
+        }
+    } else if (parent.classList.contains('white') && location.classList.contains('white')) {
         if (parentID[0] == 'a') {
             if (((newID[0] == 'b') && ((nextnum = prevnum + 1) || (nextnum = prevnum - 1))) || ((newID[0] == 'c') && ((nextnum = prevnum + 2) || (nextnum = prevnum - 2))) || ((newID[0] == 'd') && ((nextnum = prevnum + 3) || (nextnum = prevnum - 3))) || ((newID[0] == 'e') && ((nextnum = prevnum + 4) || (nextnum = prevnum - 4))) || ((newID[0] == 'f') && ((nextnum = prevnum + 5) || (nextnum = prevnum - 5))) || ((newID[0] == 'g') && ((nextnum = prevnum + 6) || (nextnum = prevnum - 6))) || ((newID[0] == 'h') && ((nextnum = prevnum + 7) || (nextnum = prevnum - 7)))) {
                 if (elementInMid(parentID, newID)) {
@@ -596,12 +674,6 @@ function queen(img, location) {
                 return false;
             }
         }
-    } else if ((parentID[0] == newID[0]) || (parentID[1] == newID[1])) {
-        if (elementInBet(parentID, newID)) {
-            return false;
-        } else {
-            return true;
-        }
     } else {
         return false;
     }
@@ -612,7 +684,7 @@ function king(img, location) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
     let nextnum = parseInt(newID[1]);
-    if (((newID[0] == nearby[parentID[0]][0]) || (newID[0] == nearby[parentID[0]][1]) || (newID[0] == nearby[parentID[0]][2])) && ((nextnum == prevnum + 1) || (nextnum == prevnum - 1))) {
+    if (((newID[0] == nearby[parentID[0]][0]) || (newID[0] == nearby[parentID[0]][1]) || (newID[0] == nearby[parentID[0]][2])) && ((nextnum == prevnum + 1) || (nextnum == prevnum - 1) || (nextnum == prevnum))) {
         return true;
     } else {
         return false;

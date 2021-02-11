@@ -15,6 +15,7 @@ h2 {
     color: blanchedalmond;
     text-align: center;
     margin: auto 0;
+    padding-top: 30px;
 }
 
 .white,
@@ -38,7 +39,7 @@ img {
 }
 
 img:hover {
-    transform: scale(0.98);
+    transform: scale(1.10);
     cursor: pointer;
 }
 
@@ -52,11 +53,6 @@ img:hover {
     margin-top: 30px;
 }
 
-
-/* .card {
-    box-shadow: 10px 10px 8px 10px #888888;
-} */
-
 @media (max-width: 500px) {
     .white,
     .black {
@@ -67,5 +63,11 @@ img:hover {
     }
     .chessboard {
         margin-top: 100px;
+    }
+    h2 {
+        width: 50px;
+        height: 50px;
+        margin: auto 0;
+        padding-top: 20px;
     }
 }
