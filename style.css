@@ -20,8 +20,8 @@ h2 {
 
 .white,
 .black {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     padding: 5px;
     border: 1px solid black;
 }
@@ -35,7 +35,7 @@ h2 {
 }
 
 img {
-    width: 100%;
+    width: 75%;
 }
 
 img:hover {
@@ -50,7 +50,7 @@ img:hover {
 }
 
 .chessboard {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 @media (max-width: 500px) {

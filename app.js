@@ -97,22 +97,25 @@ function movePiece(e) {
                     e.target.classList = img.classList;
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             } else if (img.classList.contains('rook')) {
                 if (rook(img, e.target.parentElement)) {
                     e.target.src = img.src;
                     e.target.classList = img.classList;
-                    if (img.classList.contains('wp') && img.parentElement.id == 'a1') {
-                        qsidewrook_move_count = 1;
-                    } else if (img.classList.contains('wp') && img.parentElement.id == 'h1') {
-                        ksidewrook_move_count = 1;
-                    } else if (img.classList.contains('bp') && img.parentElement.id == 'a8') {
-                        qsidebrook_move_count = 1;
-                    } else if (img.classList.contains('bp') && img.parentElement.id == 'h8') {
-                        ksidebrook_move_count = 1;
-                    }
+                    e.target.id = img.id;
                     img = '';
                     move_count += 1;
+                    if (e.target.id == 'qswr') {
+                        qsidewrook_move_count = 1;
+                    } else if (e.target.id == 'kswr') {
+                        ksidewrook_move_count = 1;
+                    } else if (e.target.id == 'qsbr') {
+                        qsidebrook_move_count = 1;
+                    } else if (e.target.id == 'ksbr') {
+                        ksidebrook_move_count = 1;
+                    }
+                    // rotate();
                 }
             } else if (img.classList.contains('queen')) {
                 if (queen(img, e.target.parentElement)) {
@@ -120,6 +123,7 @@ function movePiece(e) {
                     e.target.classList = img.classList;
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             } else if (img.classList.contains('king')) {
                 if (king(img, e.target.parentElement)) {
@@ -132,6 +136,7 @@ function movePiece(e) {
                     }
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             } else if (img.classList.contains('pawn')) {
                 if (pawn(img, e.target.parentElement)) {
@@ -139,6 +144,7 @@ function movePiece(e) {
                     e.target.classList = img.classList;
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             } else if (img.classList.contains('knight')) {
                 if (knight(img, e.target.parentElement)) {
@@ -146,6 +152,7 @@ function movePiece(e) {
                     e.target.classList = img.classList;
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             }
         }
@@ -168,7 +175,7 @@ function movePiece(e) {
     // if no piece is selected
     else if (e.target.classList.contains('box') && img == '') {
         img = '';
-        console.log(e.target.lastElementChild);
+        // console.log(e.target.lastElementChild);
     }
     // where the piece is to be moved
     else if (e.target.classList.contains('box')) {
@@ -178,6 +185,7 @@ function movePiece(e) {
                     e.target.appendChild(img);
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             } else if (img.classList.contains('rook')) {
                 if (rook(img, e.target)) {
@@ -193,12 +201,14 @@ function movePiece(e) {
                     }
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             } else if (img.classList.contains('queen')) {
                 if (queen(img, e.target)) {
                     e.target.appendChild(img);
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             } else if (img.classList.contains('king')) {
                 if (king(img, e.target)) {
@@ -210,6 +220,7 @@ function movePiece(e) {
                     }
                     img = '';
                     move_count += 1;
+                    // rotate();
                 } else if (img.classList.contains('wp') && (e.target.id == 'c1') && (d1.lastElementChild == null) && (c1.lastElementChild == null) && (b1.lastElementChild == null) && (wking_move_count == 0) && qsidewrook_move_count == 0) {
                     e.target.appendChild(img);
                     wking_move_count += 1;
@@ -218,6 +229,7 @@ function movePiece(e) {
                     a1.innerHTML = '';
                     img = '';
                     move_count += 1;
+                    // rotate();
                 } else if (img.classList.contains('wp') && (e.target.id == 'g1') && (f1.lastElementChild == null) && (g1.lastElementChild == null) && (wking_move_count == 0) && ksidewrook_move_count == 0) {
                     e.target.appendChild(img);
                     wking_move_count += 1;
@@ -226,6 +238,7 @@ function movePiece(e) {
                     h1.innerHTML = '';
                     img = '';
                     move_count += 1;
+                    // rotate();
                 } else if (img.classList.contains('bp') && (e.target.id == 'g8') && (f8.lastElementChild == null) && (g8.lastElementChild == null) && (bking_move_count == 0) && ksidebrook_move_count == 0) {
                     e.target.appendChild(img);
                     bking_move_count += 1;
@@ -234,6 +247,7 @@ function movePiece(e) {
                     h8.innerHTML = '';
                     img = '';
                     move_count += 1;
+                    // rotate();
                 } else if (img.classList.contains('bp') && (e.target.id == 'c8') && (d8.lastElementChild == null) && (c8.lastElementChild == null) && (b8.lastElementChild == null) && (bking_move_count == 0) && qsidebrook_move_count == 0) {
                     e.target.appendChild(img);
                     bking_move_count += 1;
@@ -242,18 +256,21 @@ function movePiece(e) {
                     a8.innerHTML = '';
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             } else if (img.classList.contains('pawn')) {
                 if (pawn(img, e.target)) {
                     e.target.appendChild(img);
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             } else if (img.classList.contains('knight')) {
                 if (knight(img, e.target)) {
                     e.target.appendChild(img);
                     img = '';
                     move_count += 1;
+                    // rotate();
                 }
             }
         } else {
@@ -832,3 +849,15 @@ function elementInMid(prev, next) {
         }
     }
 }
+
+// Rotate the chessboard after every move
+// let deg = 0;
+
+// function rotate() {
+//     let id = setInterval(frame, 2);
+
+//     function frame() {
+//         chess.style.transform = `rotate(${String(deg + 180)}deg)`;
+//         deg = deg + 180;
+//     }
+// }
