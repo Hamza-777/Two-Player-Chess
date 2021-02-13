@@ -8,11 +8,14 @@ body {
     background-color: #312e2b;
 }
 
-.white,
-.black {
+#wqueen,
+#bqueen {
+    display: none;
+}
+
+.box {
     width: 80px;
     height: 80px;
-    padding: 5px;
     text-align: center;
 }
 
@@ -25,8 +28,8 @@ body {
 }
 
 img {
-    height: 90%;
-    margin: 5px 0;
+    height: 100%;
+    width: 100%;
 }
 
 img:hover {
@@ -43,8 +46,7 @@ img:hover {
 .chessboard {
     margin-top: 20px;
     border-radius: 10px;
-    float: left;
-    margin-left: 10px;
+    flex-direction: column;
 }
 
 @media (max-width: 500px) {
