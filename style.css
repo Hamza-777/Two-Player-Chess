@@ -2,44 +2,35 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    text-align: center;
 }
 
 body {
-    background-color: #333;
-}
-
-h2 {
-    width: 80px;
-    height: 80px;
-    color: blanchedalmond;
-    text-align: center;
-    margin: auto 0;
-    padding-top: 30px;
+    background-color: #312e2b;
 }
 
 .white,
 .black {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     padding: 5px;
-    border: 1px solid black;
+    text-align: center;
 }
 
 .white {
-    background-color: #dec29b;
+    background-color: #eeeed2;
 }
 
 .black {
-    background-color: #784c36;
+    background-color: #769656;
 }
 
 img {
-    width: 75%;
+    height: 90%;
+    margin: 5px 0;
 }
 
 img:hover {
-    transform: scale(1.10);
+    transform: scale(1.05);
     cursor: pointer;
 }
 
@@ -51,6 +42,9 @@ img:hover {
 
 .chessboard {
     margin-top: 20px;
+    border-radius: 10px;
+    float: left;
+    margin-left: 10px;
 }
 
 @media (max-width: 500px) {
