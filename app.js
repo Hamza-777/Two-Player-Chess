@@ -102,6 +102,16 @@ const board = [
 //     }
 // }
 
+// Add class enpassant
+function addEnpassant(item) {
+    item.classList.add('enpassant');
+}
+
+// Remove class enpassant
+function removeEnpassant(item) {
+    item.classList.remove('enpassant');
+}
+
 function movePiece(e) {
     // Exchange pieces
     if ((e.target.classList.contains('img') && img != '')) {
@@ -188,6 +198,33 @@ function movePiece(e) {
     }
     // Select a piece witn altering turns
     else if (e.target.classList.contains('img')) {
+        // console.log(e.target.classList.contains('wp') && e.target.classList.contains('pawn'));
+        // some constraints for enpassant
+        let pawns = document.getElementsByClassName('enpassant');
+        // console.log(pawns);
+        for (let i = 0; i < pawns.length; i += 1) {
+            if (pawns[i].classList.contains('wp')) {
+                if ((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild == null) && (document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild == null)) {
+                    removeEnpassant(pawns[i]);
+                } else if ((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild == null) && ((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild != null) && !(document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('bp') && document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('pawn')))) {
+                    removeEnpassant(pawns[i]);
+                } else if (((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild != null) && !(document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('bp') && document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('pawn'))) && (document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild == null)) {
+                    removeEnpassant(pawns[i]);
+                } else if (((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild != null) && !(document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('bp') && document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('pawn'))) && ((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild != null) && !(document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('bp') && document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('pawn')))) {
+                    removeEnpassant(pawns[i]);
+                }
+            } else {
+                if ((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild == null) && (document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild == null)) {
+                    removeEnpassant(pawns[i]);
+                } else if ((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild == null) && ((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild != null) && !(document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('wp') && document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('pawn')))) {
+                    removeEnpassant(pawns[i]);
+                } else if (((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild != null) && !(document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('wp') && document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('pawn'))) && (document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild == null)) {
+                    removeEnpassant(pawns[i]);
+                } else if (((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild != null) && !(document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('wp') && document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('pawn'))) && ((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild != null) && !(document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('wp') && document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild.classList.contains('pawn')))) {
+                    removeEnpassant(pawns[i]);
+                }
+            }
+        }
         if ((move_count % 2 == 0) && e.target.classList.contains('wp')) {
             img = e.target;
             parentID = e.target.parentElement.id;
@@ -203,6 +240,7 @@ function movePiece(e) {
     // if no piece is selected
     else if (e.target.classList.contains('box') && img == '') {
         img = '';
+        // console.log(e.target.lastElementChild);
     }
     // where the piece is to be moved
     else if (e.target.classList.contains('box')) {
@@ -301,7 +339,56 @@ function movePiece(e) {
                         e.target.appendChild(img);
                         img = '';
                         move_count += 1;
-                    } else {
+                    } else { // Add some constraints for enpassant rule
+                        if (img.classList.contains('wp') && (parentID[1] == '2') && (e.target.id[1] == '4')) {
+                            if (((document.getElementById(`${pNearby[parentID[0]][0]}4`).lastElementChild == null)) && (document.getElementById(`${pNearby[parentID[0]][1]}4`).lastElementChild == null)) {
+                                img = img;
+                            } else if (((document.getElementById(`${pNearby[parentID[0]][0]}4`).lastElementChild != null)) && (document.getElementById(`${pNearby[parentID[0]][1]}4`).lastElementChild == null)) {
+                                if (document.getElementById(`${pNearby[parentID[0]][0]}4`).lastElementChild.classList.contains('bp') && document.getElementById(`${pNearby[parentID[0]][0]}4`).lastElementChild.classList.contains('pawn')) {
+                                    addEnpassant(img);
+                                    // console.log(img);
+                                }
+                            } else if ((document.getElementById(`${pNearby[parentID[0]][0]}4`).lastElementChild == null) && ((document.getElementById(`${pNearby[parentID[0]][1]}4`).lastElementChild != null))) {
+                                if (document.getElementById(`${pNearby[parentID[0]][1]}4`).lastElementChild.classList.contains('bp') && document.getElementById(`${pNearby[parentID[0]][1]}4`).lastElementChild.classList.contains('pawn')) {
+                                    addEnpassant(img);
+                                    // console.log(img);
+                                }
+                            } else if (((document.getElementById(`${pNearby[parentID[0]][0]}4`).lastElementChild != null)) && ((document.getElementById(`${pNearby[parentID[0]][1]}4`).lastElementChild != null))) {
+                                if (document.getElementById(`${pNearby[parentID[0]][0]}4`).lastElementChild.classList.contains('bp') && document.getElementById(`${pNearby[parentID[0]][0]}4`).lastElementChild.classList.contains('pawn')) {
+                                    addEnpassant(img);
+                                    // console.log(img);
+                                } else if (document.getElementById(`${pNearby[parentID[0]][1]}4`).lastElementChild.classList.contains('bp') && document.getElementById(`${pNearby[parentID[0]][1]}4`).lastElementChild.classList.contains('pawn')) {
+                                    addEnpassant(img);
+                                    // console.log(img);
+                                }
+                            }
+                        } else if (img.classList.contains('bp') && (parentID[1] == '7') && (e.target.id[1] == '5')) {
+                            if (((document.getElementById(`${pNearby[parentID[0]][0]}5`).lastElementChild == null)) && (document.getElementById(`${pNearby[parentID[0]][1]}5`).lastElementChild == null)) {
+                                img = img;
+                            } else if (((document.getElementById(`${pNearby[parentID[0]][0]}5`).lastElementChild != null)) && (document.getElementById(`${pNearby[parentID[0]][1]}5`).lastElementChild == null)) {
+                                if (document.getElementById(`${pNearby[parentID[0]][0]}5`).lastElementChild.classList.contains('wp') && document.getElementById(`${pNearby[parentID[0]][0]}5`).lastElementChild.classList.contains('pawn')) {
+                                    addEnpassant(img);
+                                    // console.log(img);
+                                }
+                            } else if ((document.getElementById(`${pNearby[parentID[0]][0]}5`).lastElementChild == null) && ((document.getElementById(`${pNearby[parentID[0]][1]}5`).lastElementChild != null))) {
+                                if (document.getElementById(`${pNearby[parentID[0]][1]}5`).lastElementChild.classList.contains('wp') && document.getElementById(`${pNearby[parentID[0]][1]}5`).lastElementChild.classList.contains('pawn')) {
+                                    addEnpassant(img);
+                                    // console.log(img);
+                                }
+                            } else if (((document.getElementById(`${pNearby[parentID[0]][0]}5`).lastElementChild != null)) && ((document.getElementById(`${pNearby[parentID[0]][1]}5`).lastElementChild != null))) {
+                                if (document.getElementById(`${pNearby[parentID[0]][0]}5`).lastElementChild.classList.contains('wp') && document.getElementById(`${pNearby[parentID[0]][0]}5`).lastElementChild.classList.contains('pawn')) {
+                                    addEnpassant(img);
+                                    // console.log(img);
+                                } else if (document.getElementById(`${pNearby[parentID[0]][1]}5`).lastElementChild.classList.contains('wp') && document.getElementById(`${pNearby[parentID[0]][1]}5`).lastElementChild.classList.contains('pawn')) {
+                                    addEnpassant(img);
+                                    // console.log(img);
+                                }
+                            }
+                        } else {
+                            if (img.classList.contains('enpassant')) {
+                                removeEnpassant(img);
+                            }
+                        }
                         e.target.appendChild(img);
                         img = '';
                         move_count += 1;
@@ -334,6 +421,12 @@ function pawn(img, location) {
     if (img.classList.contains('wp') && (location.lastElementChild != null) && (nextnum == prevnum + 1) && ((newID[0] == pNearby[parentID[0]][0]) || (newID[0] == pNearby[parentID[0]][1]))) {
         return true;
     } else if (img.classList.contains('bp') && (location.lastElementChild != null) && (nextnum == prevnum - 1) && ((newID[0] == pNearby[parentID[0]][0]) || (newID[0] == pNearby[parentID[0]][1]))) {
+        return true;
+    } else if (img.classList.contains('wp') && (nextnum == prevnum + 1) && ((newID[0] == pNearby[parentID[0]][0]) || (newID[0] == pNearby[parentID[0]][1])) && document.getElementById(`${newID[0]}5`).lastElementChild.classList.contains('enpassant')) {
+        document.getElementById(`${newID[0]}5`).innerHTML = '';
+        return true;
+    } else if (img.classList.contains('bp') && (nextnum == prevnum - 1) && ((newID[0] == pNearby[parentID[0]][0]) || (newID[0] == pNearby[parentID[0]][1])) && document.getElementById(`${newID[0]}4`).lastElementChild.classList.contains('enpassant')) {
+        document.getElementById(`${newID[0]}4`).innerHTML = '';
         return true;
     } else if (img.classList.contains('wp') && ((nextnum == prevnum + 1) || (nextnum == prevnum + 2)) && (parentID[0] == newID[0]) && parentID[1] == 2) { // Can move two boxes
         if (location.lastElementChild != null) {
