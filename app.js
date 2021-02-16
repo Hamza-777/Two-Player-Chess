@@ -198,10 +198,8 @@ function movePiece(e) {
     }
     // Select a piece witn altering turns
     else if (e.target.classList.contains('img')) {
-        // console.log(e.target.classList.contains('wp') && e.target.classList.contains('pawn'));
         // some constraints for enpassant
         let pawns = document.getElementsByClassName('enpassant');
-        // console.log(pawns);
         for (let i = 0; i < pawns.length; i += 1) {
             if (pawns[i].classList.contains('wp')) {
                 if ((document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][0]}${pawns[i].parentElement.id[1]}`).lastElementChild == null) && (document.getElementById(`${pNearby[pawns[i].parentElement.id[0]][1]}${pawns[i].parentElement.id[1]}`).lastElementChild == null)) {
@@ -991,6 +989,8 @@ function elementInMid(prev, next) {
         }
     }
 }
+
+// Need to make three functions underCheck() and checkPass() and canblock()
 
 // Rotate the chessboard after every move
 // let deg = 0;
