@@ -194,6 +194,11 @@ function movePiece(e) {
                     // rotate();
                 }
             }
+        } else {
+            img = img;
+        }
+        if ((document.querySelector('.bk') == null) || (document.querySelector('.wk') == null)) {
+            chess.removeEventListener('click', movePiece);
         }
     }
     // Select a piece witn altering turns
@@ -988,6 +993,10 @@ function elementInMid(prev, next) {
             return ans;
         }
     }
+}
+
+function underCheck() {
+
 }
 
 // Need to make three functions underCheck() and checkPass() and canblock()
