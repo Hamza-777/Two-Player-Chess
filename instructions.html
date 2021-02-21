@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="inst.css">
+    <title>Two Player Chess</title>
+</head>
+
+<body>
+
+    <nav>
+        <h1>TPC</h1>
+        <ul class="flex">
+            <li><a href="index.html">Play</a></li>
+            <li><a href="instructions.html">Instructions</a></li>
+        </ul>
+    </nav>
+
+    <div class="special">
+        <h2>Special Instruction: </h2>
+        <p>The game will come to end when the king is captured and the winner will be declared only after that. In this game pawn will only promote to queen.</p>
+    </div>
+
+    <div class="regular">
+        <div id="pawn">
+            <img src="img/wpawn.png" alt="Pawn">
+            <h2>The Pawn</h2>
+            <p>
+                Pawns move vertically forward one square, with the option to move two squares if they have not yet moved. Pawns capture one square diagonally in a forward direction. <br> Pawns are unable to move backward. Upon reaching the other side
+                of the board a pawn promotes into any other piece, except for a king. Additionally, pawns can make a special move named En Passant.
+            </p>
+        </div>
+        <div id="king">
+            <img src="img/wking.png" alt="King">
+            <h2>The King</h2>
+            <p>
+                Kings move one square in any direction, so long as that square is not attacked by an enemy piece. Additionally, kings are able to make a special move, know as castling.
+            </p>
+        </div>
+        <div id="queen">
+            <img src="img/wqueen.png" alt="Queen">
+            <h2>The Queen</h2>
+            <p>
+                Queens move diagonally, horizontally, or vertically any number of squares. They are unable to jump over pieces.
+            </p>
+        </div>
+        <div id="rook">
+            <img src="img/wrook.png" alt="Rook">
+            <h2>The Rook</h2>
+            <p>
+                Rooks move horizontally or vertically any number of squares. They are unable to jump over pieces. Rooks move when the king castles.
+            </p>
+        </div>
+        <div id="bishop">
+            <img src="img/wbishop.png" alt="Bishop">
+            <h2>The Bishop</h2>
+            <p>
+                Bishops move diagonally any number of squares. They are unable to jump over pieces.
+            </p>
+        </div>
+        <div id="knight">
+            <img src="img/wknight.png" alt="Knight">
+            <h2>The Knight</h2>
+            <p>
+                Knights move in an ‘L’ shape’: two squares in a horizontal or vertical direction, then move one square horizontally or vertically. They are the only piece able to jump over other pieces.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

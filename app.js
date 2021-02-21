@@ -199,6 +199,11 @@ function movePiece(e) {
         }
         if ((document.querySelector('.bk') == null) || (document.querySelector('.wk') == null)) {
             chess.removeEventListener('click', movePiece);
+            if (document.querySelector('.bk') == null) {
+                document.querySelector('.wwin').lastElementChild.style.display = 'block';
+            } else if (document.querySelector('.wk') == null) {
+                document.querySelector('.bwin').lastElementChild.style.display = 'block';
+            }
         }
     }
     // Select a piece witn altering turns

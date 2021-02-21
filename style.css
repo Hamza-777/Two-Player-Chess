@@ -8,6 +8,49 @@ body {
     background-color: #312e2b;
 }
 
+nav {
+    display: flex;
+    height: 40px;
+    background-color: rgb(24, 23, 23);
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav h1 {
+    color: whitesmoke;
+}
+
+nav li {
+    list-style-type: none;
+    padding: 5px;
+    margin: 5px;
+}
+
+nav a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+nav a:hover {
+    color: #769656;
+    transform: scale(1.01);
+}
+
+.bwin,
+.wwin {
+    text-align: center;
+    margin: 5px 0;
+    font-size: 20px;
+    color: #769656;
+    height: 23px;
+    /* display: none; */
+}
+
+.bwin p,
+.wwin p {
+    display: none;
+}
+
 #wqueen,
 #bqueen {
     display: none;
@@ -44,7 +87,6 @@ img:hover {
 }
 
 .chessboard {
-    margin-top: 20px;
     border-radius: 10px;
     flex-direction: column;
 }

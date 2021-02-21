@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #312e2b;
+}
+
+img {
+    color: whitesmoke;
+    width: 25%;
+}
+
+nav {
+    display: flex;
+    height: 40px;
+    background-color: rgb(24, 23, 23);
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav h1 {
+    color: whitesmoke;
+}
+
+nav li {
+    list-style-type: none;
+    padding: 5px;
+    margin: 5px;
+}
+
+nav a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+nav a:hover {
+    color: #769656;
+    transform: scale(1.01);
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.special,
+.regular {
+    width: 50%;
+    margin: auto;
+    color: whitesmoke;
+}
+
+h2 {
+    color: #769656;
+    margin: 10px 5px;
+}
+
+.regular div {
+    width: 100%;
+    margin: 120px auto;
+    text-align: left;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.25;
+}
+
+#pawn img,
+#queen img,
+#bishop img {
+    float: left;
+    margin-right: 30px;
+}
+
+#king img,
+#rook img,
+#knight img {
+    float: right;
+    margin-left: 30px;
+}

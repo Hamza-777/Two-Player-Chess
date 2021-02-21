@@ -11,11 +11,22 @@
 
 <body>
 
+    <nav>
+        <h1>TPC</h1>
+        <ul class="flex">
+            <li><a href="index.html">Play</a></li>
+            <li><a href="instructions.html">Instructions</a></li>
+        </ul>
+    </nav>
+
     <div class="game">
         <img src="img/bqueen.png" class="img bp queen" id="bqueen">
         <!--Not imp-->
         <img src="img/wqueen.png" class="img wp queen" id="wqueen">
         <!--Not imp-->
+        <div class="wwin">
+            <p>White Wins</p>
+        </div>
         <div class="chessboard card">
             <div class="row1 flex">
                 <div class="white box" id="a8">
@@ -193,6 +204,10 @@
                     <img src="img/wrook.png" class="img wp rook" id="kswr">
                 </div>
             </div>
+        </div>
+
+        <div class="bwin">
+            <p>Black Wins</p>
         </div>
     </div>
 
