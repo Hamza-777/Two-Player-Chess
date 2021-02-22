@@ -11,6 +11,7 @@ const a1 = document.getElementById('a1');
 const b1 = document.getElementById('b1');
 const c1 = document.getElementById('c1');
 const d1 = document.getElementById('d1');
+const e1 = document.getElementById('e1');
 const f1 = document.getElementById('f1');
 const g1 = document.getElementById('g1');
 const h1 = document.getElementById('h1');
@@ -18,6 +19,7 @@ const a8 = document.getElementById('a8');
 const b8 = document.getElementById('b8');
 const c8 = document.getElementById('c8');
 const d8 = document.getElementById('d8');
+const e8 = document.getElementById('e8');
 const f8 = document.getElementById('f8');
 const g8 = document.getElementById('g8');
 const h8 = document.getElementById('h8');
@@ -119,7 +121,7 @@ function movePiece(e) {
         if ((e.target.classList.contains('bp') && img.classList.contains('wp')) || (e.target.classList.contains('wp') && img.classList.contains('bp'))) {
             // If selected piece is a bishop
             if (img.classList.contains('lbishop') || img.classList.contains('dbishop')) {
-                if (bishop(img, e.target.parentElement)) {
+                if (bishop(img, e.target.parentElement, parentID)) {
                     e.target.src = img.src;
                     e.target.classList = img.classList;
                     img = '';
@@ -127,7 +129,7 @@ function movePiece(e) {
                     // rotate();
                 }
             } else if (img.classList.contains('rook')) { // If selected piece is a rook
-                if (rook(img, e.target.parentElement)) {
+                if (rook(img, e.target.parentElement, parentID)) {
                     e.target.src = img.src;
                     e.target.classList = img.classList;
                     e.target.id = img.id;
@@ -145,7 +147,7 @@ function movePiece(e) {
                     // rotate();
                 }
             } else if (img.classList.contains('queen')) { // If selected piece is a queen
-                if (queen(img, e.target.parentElement)) {
+                if (queen(img, e.target.parentElement, parentID)) {
                     e.target.src = img.src;
                     e.target.classList = img.classList;
                     img = '';
@@ -153,7 +155,7 @@ function movePiece(e) {
                     // rotate();
                 }
             } else if (img.classList.contains('king')) { // If selected piece is a king
-                if (king(img, e.target.parentElement)) {
+                if (king(img, e.target.parentElement, parentID)) {
                     e.target.src = img.src;
                     e.target.classList = img.classList;
                     if (img.classList.contains('wp')) {
@@ -166,7 +168,7 @@ function movePiece(e) {
                     // rotate();
                 }
             } else if (img.classList.contains('pawn')) { // If selected piece is a pawn
-                if (pawn(img, e.target.parentElement)) {
+                if (pawn(img, e.target.parentElement, parentID)) {
                     if ((e.target.parentElement.id[1] == '8')) {
                         e.target.src = whiteQueen.src;
                         e.target.classList = whiteQueen.classList;
@@ -186,7 +188,7 @@ function movePiece(e) {
                     // rotate();
                 }
             } else if (img.classList.contains('knight')) { // If selected piece is a knight
-                if (knight(img, e.target.parentElement)) {
+                if (knight(img, e.target.parentElement, parentID)) {
                     e.target.src = img.src;
                     e.target.classList = img.classList;
                     img = '';
@@ -248,7 +250,6 @@ function movePiece(e) {
     // if no piece is selected
     else if (e.target.classList.contains('box') && img == '') {
         img = '';
-        // console.log(e.target.lastElementChild);
     }
     // where the piece is to be moved
     else if (e.target.classList.contains('box')) {
@@ -256,14 +257,14 @@ function movePiece(e) {
         if (e.target.id != parentID) {
             // If selected piece is a bishop
             if (img.classList.contains('lbishop') || img.classList.contains('dbishop')) {
-                if (bishop(img, e.target)) {
+                if (bishop(img, e.target, parentID)) {
                     e.target.appendChild(img);
                     img = '';
                     move_count += 1;
                     // rotate();
                 }
             } else if (img.classList.contains('rook')) { // If selected piece is a rook
-                if (rook(img, e.target)) {
+                if (rook(img, e.target, parentID)) {
                     e.target.appendChild(img);
                     img = '';
                     move_count += 1;
@@ -279,14 +280,14 @@ function movePiece(e) {
                     // rotate();
                 }
             } else if (img.classList.contains('queen')) { // If selected piece is a queen
-                if (queen(img, e.target)) {
+                if (queen(img, e.target, parentID)) {
                     e.target.appendChild(img);
                     img = '';
                     move_count += 1;
                     // rotate();
                 }
             } else if (img.classList.contains('king')) { // If selected piece is a king
-                if (king(img, e.target)) {
+                if (king(img, e.target, parentID)) {
                     e.target.appendChild(img);
                     if (img.classList.contains('wp')) {
                         wking_move_count += 1;
@@ -334,7 +335,7 @@ function movePiece(e) {
                     // rotate();
                 }
             } else if (img.classList.contains('pawn')) { // If selected piece is a pawn
-                if (pawn(img, e.target)) {
+                if (pawn(img, e.target, parentID)) {
                     if ((e.target.id[1] == '8')) {
                         img.src = whiteQueen.src;
                         img.classList = whiteQueen.classList;
@@ -404,7 +405,7 @@ function movePiece(e) {
                     // rotate();
                 }
             } else if (img.classList.contains('knight')) { // If selected piece is a knight
-                if (knight(img, e.target)) {
+                if (knight(img, e.target, parentID)) {
                     e.target.appendChild(img);
                     img = '';
                     move_count += 1;
@@ -421,7 +422,7 @@ function movePiece(e) {
 }
 
 // Decides if pawn can go to a selected box
-function pawn(img, location) {
+function pawn(img, location, parentID) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
     let nextnum = parseInt(newID[1]);
@@ -470,7 +471,7 @@ function pawn(img, location) {
 }
 
 // Decides if bishop can go to a selected box
-function bishop(img, location) {
+function bishop(img, location, parentID) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
     let nextnum = parseInt(newID[1]);
@@ -647,7 +648,7 @@ function bishop(img, location) {
 }
 
 // Decides if rook can go to a selected box
-function rook(img, location) {
+function rook(img, location, parentID) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
     let nextnum = parseInt(newID[1]);
@@ -664,7 +665,7 @@ function rook(img, location) {
 }
 
 // Decides if queen can go to a selected box
-function queen(img, location) {
+function queen(img, location, parentID) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
     let nextnum = parseInt(newID[1]);
@@ -845,7 +846,7 @@ function queen(img, location) {
 }
 
 // Decides if king can go to a selected box
-function king(img, location) {
+function king(img, location, parentID) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
     let nextnum = parseInt(newID[1]);
@@ -858,7 +859,7 @@ function king(img, location) {
 }
 
 // Decides if knight can go to a selected box
-function knight(img, location) {
+function knight(img, location, parentID) {
     let newID = location.id;
     let prevnum = parseInt(parentID[1]);
     let nextnum = parseInt(newID[1]);
@@ -999,12 +1000,6 @@ function elementInMid(prev, next) {
         }
     }
 }
-
-function underCheck() {
-
-}
-
-// Need to make three functions underCheck() and checkPass() and canblock()
 
 // Rotate the chessboard after every move
 // let deg = 0;
